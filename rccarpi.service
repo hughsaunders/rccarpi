@@ -1,0 +1,14 @@
+[Unit]
+Description=rccarpi
+After=bluetooth.target
+
+[Service]
+ExecStart=/home/pi/rccarpi/venv/bin/python -u control.py
+WorkingDirectory=/home/pi/rccarpi
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
