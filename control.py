@@ -28,6 +28,7 @@ EVT_TYPE_AXIS = 3
 EVT_BTN_PRESS = 1
 EVT_BTN_RELEASE = 0
 EVT_BTN_X = 307 # Left
+EVT_BTN_Y = 308 # Test LED 2
 EVT_BTN_B = 305 # Right
 EVT_BTN_A = 304 # Test LED ON/OFF
 EVT_AXIS_Y = 1 # forweard/reverse axis
@@ -67,6 +68,7 @@ drive = Motor(26,20)
 steer = Motor(19,16)
 
 test_led = LED(2)
+test_led_2 = LED(15)
 
 #prints out device info at start
 print(gamepad)
@@ -74,6 +76,7 @@ print(gamepad)
 def reset():
     print("Resetting GPIO pins")
     test_led.off();
+    test_led_2.off();
     drive.stop()
     steer.stop()
 
@@ -113,6 +116,13 @@ def control_loop():
                 else:
                     print("test LED off")
                     test_led.off();
+            elif event.code == EVT_BTN_Y:
+                if event.value == EVT_BTN_PRESS:
+                    print("test LED 2on")
+                    test_led_2.on();
+                else:
+                    print("test LED 2 off")
+                    test_led_2.off();
 
             else:
                 if event.value == EVT_BTN_PRESS:
